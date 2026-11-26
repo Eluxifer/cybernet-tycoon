@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CyberNet Tycoon Support</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: one readable column, same look as the privacy page */
+:root {
+  --bg: #f3f5f6; --surface: #ffffff; --fg: #15202a; --muted: #55636f;
+  --line: #d6dde2; --accent: #0b8a79;
+  --display: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --body: "IBM Plex Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0b1015; --surface: #121a21; --fg: #dfe8ee; --muted: #8c9ba7;
+  --line: #22303b; --accent: #3fd6bf; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #0b1015; --surface: #121a21; --fg: #dfe8ee; --muted: #8c9ba7;
+  --line: #22303b; --accent: #3fd6bf; color-scheme: dark }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.65 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 680px; margin: 0 auto; padding-block: 48px 64px; display: grid; gap: 28px; }
+header { display: grid; gap: 6px; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+.eyebrow { font: 600 12px/1 var(--display); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+h1 { font: 600 clamp(26px, 5vw, 34px)/1.2 var(--display); margin: 0; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0; }
+section { display: grid; gap: 8px; }
+h2 { font: 600 15px/1.3 var(--display); letter-spacing: .04em; margin: 0; }
+p { margin: 0; }
+.contact { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 18px 20px; display: grid; gap: 10px; }
+.row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.email { font: 600 18px/1.3 var(--display); user-select: all; overflow-wrap: anywhere; min-width: 0; }
+button { font: 600 13px/1 var(--display); letter-spacing: .04em; color: var(--accent); background: transparent;
+  border: 1px solid var(--accent); border-radius: 6px; padding: 8px 12px; cursor: pointer; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+a { color: var(--accent); }
+ul { margin: 0; padding-left: 20px; display: grid; gap: 6px; }
+footer { border-top: 1px solid var(--line); padding-top: 20px; color: var(--muted); font-size: 14px; }
+</style>
+
+</head>
+<body>
+<main>
+  <header>
+    <span class="eyebrow">CyberNet Tycoon</span>
+    <h1>Support</h1>
+    <p class="sub">Help with the game, purchases and your save. Made by Arcxed.</p>
+  </header>
+
+  <div class="contact">
+    <h2>Contact</h2>
+    <div class="row">
+      <span class="email" id="email">arcxed@outlook.com</span>
+      <button type="button" id="copy">Copy</button>
+    </div>
+    <p>Tell us your device, iOS version and what happened. We usually reply within a few days.</p>
+  </div>
+
+  <section>
+    <h2>A purchase didn't arrive</h2>
+    <p>Close and reopen the game: a purchase that was interrupted is delivered the next time it starts. For Remove Ads, x2 Profit or the Starter Pack, open the GOALS tab and tap Restore Purchases. Chip packs can't be restored, so if chips didn't arrive, email us and include the date of the purchase.</p>
+  </section>
+
+  <section>
+    <h2>New phone or reinstalled the game</h2>
+    <p>Your progress is saved only on your device, so a new install starts a fresh city. Anything you bought once (Remove Ads, x2 Profit, the Starter Pack) comes back with Restore Purchases.</p>
+  </section>
+
+  <section>
+    <h2>Refunds</h2>
+    <p>Payments go through Apple, so refunds are handled by Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+  </section>
+
+  <section>
+    <h2>Ads</h2>
+    <ul>
+      <li>The banner starts after you hire your first Fixer. Remove Ads turns it off for good.</li>
+      <li>Reward videos only play when you tap to watch one.</li>
+    </ul>
+  </section>
+
+  <footer>Privacy: <a href="privacy.html">CyberNet Tycoon Privacy Policy</a></footer>
+</main>
+
+<script>
+document.getElementById('copy').addEventListener('click', function () {
+  var b = this, text = document.getElementById('email').textContent;
+  function done(label) { b.textContent = label; setTimeout(function () { b.textContent = 'Copy'; }, 1600); }
+  function select() {
+    var r = document.createRange(); r.selectNodeContents(document.getElementById('email'));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); done('Selected');
+  }
+  try { navigator.clipboard.writeText(text).then(function () { done('Copied'); }, select); } catch (e) { select(); }
+});
+</script>
+
+</body>
+</html>
